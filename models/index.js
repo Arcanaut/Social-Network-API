@@ -1,5 +1,5 @@
 
-// Package up all the models
+// Package up all the models as objects for easier file export
 const User = require('./User');
 const Thought = require('./Thought');
 
