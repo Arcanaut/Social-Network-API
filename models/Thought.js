@@ -1,14 +1,14 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ThoughtSchema = new Schema(
+const ResponseSchema = new Schema(
   {
     // set custom id to avoid confusion with parent comment _id
-    thoughtId: {
+    responseId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
     },
-    thoughtBody: {
+    responseBody: {
       type: String,
       required: true,
       trim:true
@@ -30,13 +30,13 @@ const ThoughtSchema = new Schema(
   }
 );
 
-const ResponseSchema = new Schema(
+const ThoughtSchema = new Schema(
     {
       writtenBy: {
         type: String,
         require: true,
       },
-      responseBody: {
+      thoughtBody: {
         type: String,
         required: true,
         trim:true
@@ -58,11 +58,11 @@ const ResponseSchema = new Schema(
     }
   );
 
-  ResponseSchema.virtual('thoughtCount').get(function() {
+  ResponseSchema.virtual('responseCount').get(function() {
     return this.replies.length;
   });
   
-// create the response model using the responseSchema
-const Response = model('response', ResponseSchema);
+// create the thought model using the thoughtSchema
+const Thought = model('thought', ThoughtSchema);
 
-module.exports = Response;
+module.exports = Thought;
