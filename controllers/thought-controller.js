@@ -1,6 +1,4 @@
 //used outline of Pizza-Hunt controller and modified as needed
-const User = require('./User');
-const Thought = require('./Thought');
 
 const { Thought, User } = require('../models');
 
