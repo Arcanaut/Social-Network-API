@@ -9,3 +9,41 @@ const validateEmail = function(email) {
 //how to validate email in a mongoose schema
 //https://mongoosejs.com/docs/validation.html
 //TODO: Set up User.js Schema
+
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      // https://mongoosejs.com/docs/validation.html
+      // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+      validate: {
+        validator: validateEmail,
+        message: `invalid email`
+      }
+    },
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ]},
+    {
+      toJSON: {
+        virtuals: true
+      },
+      id: false
+    }
+  )
+
+  const User = model('User', UserSchema);
+
+  module.exports = User;
