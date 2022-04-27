@@ -1,6 +1,7 @@
 const { User } = require('../models');
 
 const userContoller = {
+  //gets all users
   getAllUsers(req, res) {
     User.find({})
       .populate({
@@ -17,7 +18,7 @@ const userContoller = {
   },
 
 
-
+//gets single user
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({
